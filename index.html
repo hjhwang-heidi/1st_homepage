@@ -9,20 +9,22 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Gowun Batang', serif; color: #333; background-color: #fdfaf7; line-height: 1.8; word-break: keep-all; }
 
-        section { width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 24px; text-align: center; }
+        section { width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 50px 24px; text-align: center; }
 
         /* 1페이지: 메인 */
         #page1 { background-color: #fff; }
-        .main-title { font-size: 1.45rem; margin-bottom: 40px; color: #8d7b68; font-weight: 700; }
+        .main-title { font-size: 1.4rem; margin-bottom: 40px; color: #8d7b68; font-weight: 700; line-height: 1.7; }
         .baby-photo-container { width: 85%; max-width: 300px; height: 400px; border-radius: 150px 150px 20px 20px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         .baby-photo-container img { width: 100%; height: 100%; object-fit: cover; }
 
         /* 2페이지: 인사말 */
         #page2 { background-color: #fdfaf7; }
+        
+        /* 아치형 문구 영역 최적화 (간격 축소) */
         .curved-text-container { 
-            width: 320px; 
-            height: 120px; 
-            margin-bottom: 30px; /* 이름 타이틀과의 2줄 정도 간격 */
+            width: 300px; 
+            height: 70px; /* 높이를 줄여 이름과 밀착시킴 */
+            margin-bottom: 25px; /* 10pt 기준 약 2줄 정도의 여백 */
         }
         .curved-text-container svg { width: 100%; height: 100%; overflow: visible; }
         .curved-text-container text { font-family: 'Dancing Script', cursive; font-size: 26px; fill: #a6937c; }
@@ -49,7 +51,7 @@
         .modal-content { position: relative; width: 95%; max-width: 500px; text-align: center; }
         .modal-content img { width: 100%; border-radius: 4px; max-height: 80vh; object-fit: contain; }
         .close-btn { position: absolute; top: -60px; right: 0; color: white; font-size: 45px; cursor: pointer; }
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; background: none; border: none; padding: 20px; text-shadow: 0 0 10px rgba(0,0,0,0.5); }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; background: none; border: none; padding: 20px; }
         .prev-btn { left: -30px; }
         .next-btn { right: -30px; }
 
@@ -63,7 +65,9 @@
     <!-- 1페이지 -->
     <section id="page1">
         <div class="main-title fade-in">
-            제희의 첫 번째 생일을<br>축하해주세요!
+            2026년 4월 17일<br>
+            제희의 첫 번째 생일을<br>
+            축하해주세요!
         </div>
         <div class="baby-photo-container fade-in">
             <img src="images/IMG_9710.JPG" alt="메인 이미지">
@@ -73,9 +77,9 @@
     <!-- 2페이지 -->
     <section id="page2">
         <div class="curved-text-container">
-            <!-- 넉넉한 viewBox와 path로 잘림 방지 -->
-            <svg viewBox="0 0 400 150">
-                <path id="curvePath" d="M 50,120 A 150,100 0 0,1 350,120" fill="transparent" />
+            <!-- viewBox와 path를 조절하여 텍스트를 컨테이너 하단으로 배치 -->
+            <svg viewBox="0 0 320 80">
+                <path id="curvePath" d="M 40,70 A 120,60 0 0,1 280,70" fill="transparent" />
                 <text>
                     <textPath xlink:href="#curvePath" startOffset="50%" text-anchor="middle">
                         Happy 1st birthday
@@ -129,19 +133,18 @@
     </div>
 
     <script>
-        // 1. 파일 확장자를 대문자 .JPG로 변경
+        // 이미지 경로 설정 (.JPG 대문자 유지)
         const images = [];
         for (let i = 1; i <= 16; i++) {
             images.push(`images/image${i}.JPG`);
         }
 
-        // 2. 갤러리 렌더링
         const galleryGrid = document.getElementById('galleryGrid');
         images.forEach((src, index) => {
             const item = document.createElement('div');
             item.className = 'gallery-item';
             item.onclick = () => openModal(index);
-            item.innerHTML = `<img src="${src}" onerror="this.src='https://via.placeholder.com/150?text=Error'">`;
+            item.innerHTML = `<img src="${src}" onerror="this.style.display='none'">`;
             galleryGrid.appendChild(item);
         });
 
@@ -163,7 +166,6 @@
             document.getElementById('modalImg').src = images[currentIndex];
         }
 
-        // 스와이프 기능
         let touchstartX = 0;
         const modalImg = document.getElementById('modalImg');
         modalImg.addEventListener('touchstart', e => { touchstartX = e.changedTouches[0].screenX; });
