@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>제희의 첫 번째 생일 초대장</title>
-    <!-- 구글 폰트: 감성적인 명조체 적용 -->
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 구글 폰트: 감성 명조체 & 아치형 문구용 필기체 -->
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -28,76 +28,84 @@
             text-align: center;
         }
 
-        /* 첫 번째 페이지: 메인 (사진 포함) */
-        #page1 {
-            background-color: #fff;
-        }
+        /* 첫 번째 페이지 */
+        #page1 { background-color: #fff; }
         .main-title {
             font-size: 1.45rem;
             margin-bottom: 40px;
             color: #8d7b68;
             font-weight: 700;
-            line-height: 1.6;
         }
         .baby-photo-container {
             width: 85%;
             max-width: 320px;
             height: 450px;
             overflow: hidden;
-            border-radius: 160px 160px 20px 20px; /* 아치형 디자인 */
+            border-radius: 160px 160px 20px 20px;
             box-shadow: 0 15px 35px rgba(141, 123, 104, 0.2);
         }
         .baby-photo-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 사진이 비율에 맞게 꽉 차도록 설정 */
+            width: 100%; height: 100%; object-fit: cover;
         }
 
-        /* 두 번째 페이지: 안내글 */
-        #page2 {
-            background-color: #fdfaf7;
+        /* 두 번째 페이지 */
+        #page2 { background-color: #fdfaf7; }
+        
+        /* 아치형 텍스트 스타일 */
+        .curved-text-container {
+            width: 200px;
+            height: 100px;
+            margin-bottom: -20px; /* 이름 타이틀과의 간격 조절 */
         }
+        .curved-text-container svg {
+            width: 100%;
+            height: 100%;
+        }
+        .curved-text-container text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 22px;
+            fill: #a6937c;
+            letter-spacing: 2px;
+        }
+
         .name-title {
             font-size: 2.8rem;
             letter-spacing: 15px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             color: #5d564e;
             padding-left: 15px;
         }
-        .name-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 1px;
-            background: #d1c7bd;
-            margin: 20px auto 0;
-        }
         .invitation-text {
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             color: #555;
+            line-height: 2.2;
         }
-        .invitation-text p {
-            margin-bottom: 8px;
+        .date-highlight {
+            font-weight: 700;
+            color: #8d7b68;
+            margin-bottom: 15px;
+            display: block;
+            font-size: 1.1rem;
+        }
+        .parents-name {
+            margin-top: 30px;
+            font-weight: 700;
+            color: #444;
         }
 
-        /* 세 번째 페이지: 가로 영상 */
-        #page3 {
-            background-color: #fff;
-        }
+        /* 세 번째 페이지 */
+        #page3 { background-color: #fff; }
         .video-title {
             font-size: 1.25rem;
             margin-bottom: 35px;
             color: #8d7b68;
             font-weight: 700;
         }
-        .video-wrapper {
-            width: 100%;
-            max-width: 550px;
-        }
+        .video-wrapper { width: 100%; max-width: 550px; }
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 가로 영상 16:9 비율 */
+            padding-bottom: 56.25%; /* 16:9 가로 비율 */
             height: 0;
             background-color: #000;
             border-radius: 12px;
@@ -112,14 +120,12 @@
         
         .footer {
             margin-top: 60px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #aaa;
         }
 
-        /* 페이드인 애니메이션 */
-        .fade-in {
-            animation: fadeIn 2.5s ease-out;
-        }
+        /* 애니메이션 */
+        .fade-in { animation: fadeIn 2.5s ease-out; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -131,30 +137,48 @@
     <!-- 첫 번째 페이지: 메인 -->
     <section id="page1">
         <div class="main-title fade-in">
-            4월 28일<br>
+            2025년 4월 17일<br>
             제희의 첫 번째 생일을<br>
             축하해주세요!
         </div>
         <div class="baby-photo-container fade-in">
-            <!-- 업데이트된 사진 경로 -->
             <img src="images/IMG_9710.JPG" alt="제희의 첫 돌 사진">
         </div>
     </section>
 
     <!-- 두 번째 페이지: 안내글 -->
     <section id="page2">
+        <!-- 아치형 부제목 -->
+        <div class="curved-text-container">
+            <svg viewBox="0 0 200 100">
+                <path id="curvePath" d="M 20,80 A 80,80 0 0,1 180,80" fill="transparent" />
+                <text>
+                    <textPath xlink:href="#curvePath" startOffset="50%" text-anchor="middle">
+                        Happy 1st birthday
+                    </textPath>
+                </text>
+            </svg>
+        </div>
+
         <h1 class="name-title">제 희</h1>
+        
         <div class="invitation-text">
-            <p>꽃향기 가득한 따스한 봄날,</p>
-            <p>우리 제희가 세상에 온 지</p>
-            <p>어느덧 일 년이 되었습니다.</p>
-            <p>함께해주신 소중한 분들 덕분에</p>
-            <p>제희가 건강하게 자랄 수 있었습니다.</p>
-            <p>초보 엄마 아빠의 서툰 걸음에도</p>
-            <p>늘 곁에서 응원해주신 고마운 분들을 모시고</p>
-            <p>작고 소중한 잔치를 열고자 합니다.</p>
-            <p>제희의 첫 번째 생일 파티에 오셔서</p>
-            <p>밝은 앞날을 함께 축복해 주세요.</p>
+            <span class="date-highlight">2025년 4월 17일</span>
+            <p>저희 곁에 찾아온</p>
+            <p>사랑스러운 제희가 어느새 사계절을 지나</p>
+            <p>첫 번째 생일을 맞이했습니다.</p>
+            <br>
+            <p>가족분들의 따뜻한 사랑 덕분에</p>
+            <p>제희가 잘 먹고, 잘 자고, 잘 웃는 아이로</p>
+            <p>건강하게 자랄 수 있었습니다.</p>
+            <br>
+            <p>앞으로도 제희와 함께하는 매 순간이</p>
+            <p>더없이 빛나는 축복임을 잊지 않고</p>
+            <p>기쁨과 사랑으로 키워나가겠습니다.</p>
+            <br>
+            <p>감사드립니다.</p>
+            
+            <p class="parents-name">아빠 오제형, 엄마 황희정 올림</p>
         </div>
     </section>
 
@@ -163,7 +187,6 @@
         <h2 class="video-title">제희의 성장 기록 영상</h2>
         <div class="video-wrapper">
             <div class="video-container">
-                <!-- 가로 영상 최적화 및 ID 반영 -->
                 <iframe src="https://www.youtube.com/embed/2Pjg7h13z2U?rel=0" 
                         title="제희 성장 영상" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -172,8 +195,7 @@
             </div>
         </div>
         <div class="footer">
-            2024. 04. 28 <br>
-            아빠 엄마 드림
+            Designed for Jehee's 1st Birthday
         </div>
     </section>
 
