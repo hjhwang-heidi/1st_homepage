@@ -9,33 +9,34 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Gowun Batang', serif; color: #333; background-color: #fdfaf7; line-height: 1.8; word-break: keep-all; }
 
-        section { width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 50px 24px; text-align: center; }
+        section { width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; text-align: center; }
 
         /* 1페이지: 메인 */
         #page1 { background-color: #fff; }
-        .main-title { font-size: 1.4rem; margin-bottom: 40px; color: #8d7b68; font-weight: 700; line-height: 1.7; }
+        .main-title { font-size: 1.4rem; margin-bottom: 35px; color: #8d7b68; font-weight: 700; line-height: 1.7; }
         .baby-photo-container { width: 85%; max-width: 300px; height: 400px; border-radius: 150px 150px 20px 20px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         .baby-photo-container img { width: 100%; height: 100%; object-fit: cover; }
 
         /* 2페이지: 인사말 */
         #page2 { background-color: #fdfaf7; }
         
-        /* 아치형 문구 영역 최적화 (간격 축소) */
+        /* 아치형 문구와 이름 사이 여백 극최소화 */
         .curved-text-container { 
             width: 300px; 
-            height: 70px; /* 높이를 줄여 이름과 밀착시킴 */
-            margin-bottom: 25px; /* 10pt 기준 약 2줄 정도의 여백 */
+            height: 45px; /* 높이를 더 줄임 */
+            margin-bottom: 5px; /* 아래 마진을 최소화하여 이름과 밀착 */
         }
         .curved-text-container svg { width: 100%; height: 100%; overflow: visible; }
         .curved-text-container text { font-family: 'Dancing Script', cursive; font-size: 26px; fill: #a6937c; }
         
-        .name-title { font-size: 2.8rem; letter-spacing: 15px; margin-bottom: 35px; color: #5d564e; padding-left: 15px; }
+        /* 이름 타이틀 상단 여백 제거 */
+        .name-title { font-size: 2.8rem; letter-spacing: 15px; margin-bottom: 30px; color: #5d564e; padding-left: 15px; margin-top: 0; }
         .invitation-text { font-size: 0.95rem; color: #555; line-height: 2.2; }
-        .parents-name { margin-top: 35px; font-weight: 700; color: #444; }
+        .parents-name { margin-top: 30px; font-weight: 700; color: #444; }
 
         /* 3페이지: 사진첩 */
         #page3 { background-color: #fff; }
-        .gallery-title { font-size: 1.3rem; margin-bottom: 35px; color: #8d7b68; font-weight: 700; }
+        .gallery-title { font-size: 1.3rem; margin-bottom: 30px; color: #8d7b68; font-weight: 700; }
         .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%; max-width: 360px; }
         .gallery-item { width: 100%; aspect-ratio: 1 / 1; background: #f7f7f7; overflow: hidden; border-radius: 4px; cursor: pointer; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -77,9 +78,9 @@
     <!-- 2페이지 -->
     <section id="page2">
         <div class="curved-text-container">
-            <!-- viewBox와 path를 조절하여 텍스트를 컨테이너 하단으로 배치 -->
-            <svg viewBox="0 0 320 80">
-                <path id="curvePath" d="M 40,70 A 120,60 0 0,1 280,70" fill="transparent" />
+            <!-- 텍스트 위치를 아래로 바짝 붙임 -->
+            <svg viewBox="0 0 320 50">
+                <path id="curvePath" d="M 40,45 A 120,40 0 0,1 280,45" fill="transparent" />
                 <text>
                     <textPath xlink:href="#curvePath" startOffset="50%" text-anchor="middle">
                         Happy 1st birthday
@@ -133,7 +134,7 @@
     </div>
 
     <script>
-        // 이미지 경로 설정 (.JPG 대문자 유지)
+        // 이미지 경로 (.JPG 대문자 유지)
         const images = [];
         for (let i = 1; i <= 16; i++) {
             images.push(`images/image${i}.JPG`);
