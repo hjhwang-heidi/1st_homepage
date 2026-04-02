@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>제희의 첫 번째 생일 초대장</title>
-    <!-- 구글 폰트 적용 (나눔명조, 고운바탕) -->
+    <!-- 구글 폰트: 감성적인 명조체 적용 -->
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -13,7 +13,7 @@
             color: #333; 
             background-color: #fdfaf7; 
             line-height: 1.8;
-            overflow-x: hidden;
+            word-break: keep-all;
         }
 
         /* 공통 섹션 스타일 */
@@ -24,30 +24,33 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 50px 24px;
+            padding: 60px 24px;
             text-align: center;
         }
 
-        /* 첫 번째 페이지: 메인 */
+        /* 첫 번째 페이지: 메인 (사진 포함) */
         #page1 {
             background-color: #fff;
         }
         .main-title {
-            font-size: 1.5rem;
+            font-size: 1.45rem;
             margin-bottom: 40px;
             color: #8d7b68;
             font-weight: 700;
-            line-height: 1.5;
+            line-height: 1.6;
         }
-        .baby-photo {
+        .baby-photo-container {
             width: 85%;
             max-width: 320px;
-            height: 420px;
-            /* 실제 사진 파일이 있다면 아래 url에 파일명을 넣으세요 */
-            background: #f0f0f0 url('https://via.placeholder.com/400x530') no-repeat center;
-            background-size: cover;
-            border-radius: 160px 160px 20px 20px; /* 세련된 아치형 */
-            box-shadow: 0 15px 30px rgba(141, 123, 104, 0.15);
+            height: 450px;
+            overflow: hidden;
+            border-radius: 160px 160px 20px 20px; /* 아치형 디자인 */
+            box-shadow: 0 15px 35px rgba(141, 123, 104, 0.2);
+        }
+        .baby-photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 사진이 비율에 맞게 꽉 차도록 설정 */
         }
 
         /* 두 번째 페이지: 안내글 */
@@ -57,60 +60,53 @@
         .name-title {
             font-size: 2.8rem;
             letter-spacing: 15px;
-            margin-bottom: 45px;
+            margin-bottom: 40px;
             color: #5d564e;
-            position: relative;
-            padding-left: 15px; /* 글자 간격 때문에 치우쳐 보이는 것 방지 */
+            padding-left: 15px;
         }
         .name-title::after {
             content: '';
             display: block;
-            width: 40px;
+            width: 50px;
             height: 1px;
             background: #d1c7bd;
-            margin: 15px auto 0;
+            margin: 20px auto 0;
         }
         .invitation-text {
             font-size: 1.05rem;
             color: #555;
-            word-break: keep-all;
         }
         .invitation-text p {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
-        /* 세 번째 페이지: 가로 영상 최적화 */
+        /* 세 번째 페이지: 가로 영상 */
         #page3 {
             background-color: #fff;
         }
         .video-title {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             margin-bottom: 35px;
             color: #8d7b68;
             font-weight: 700;
         }
-        /* 가로 영상(16:9)을 위한 컨테이너 */
         .video-wrapper {
             width: 100%;
-            max-width: 600px; /* 모바일 가로모드나 태블릿 대응 */
-            padding: 0 5px;
+            max-width: 550px;
         }
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 비율 유지 공식 */
+            padding-bottom: 56.25%; /* 가로 영상 16:9 비율 */
             height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             background-color: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
         .video-container iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             border: 0;
         }
         
@@ -118,12 +114,11 @@
             margin-top: 60px;
             font-size: 0.85rem;
             color: #aaa;
-            letter-spacing: 1px;
         }
 
-        /* 애니메이션 */
+        /* 페이드인 애니메이션 */
         .fade-in {
-            animation: fadeIn 2s ease-out;
+            animation: fadeIn 2.5s ease-out;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -133,19 +128,20 @@
 </head>
 <body>
 
-    <!-- 첫 번째 페이지 -->
+    <!-- 첫 번째 페이지: 메인 -->
     <section id="page1">
         <div class="main-title fade-in">
             4월 28일<br>
             제희의 첫 번째 생일을<br>
             축하해주세요!
         </div>
-        <div class="baby-photo fade-in">
-            <!-- 사진을 넣으려면 <img> 태그를 사용하거나 위 CSS의 background url을 수정하세요 -->
+        <div class="baby-photo-container fade-in">
+            <!-- 업데이트된 사진 경로 -->
+            <img src="images/IMG_9710.JPG" alt="제희의 첫 돌 사진">
         </div>
     </section>
 
-    <!-- 두 번째 페이지 -->
+    <!-- 두 번째 페이지: 안내글 -->
     <section id="page2">
         <h1 class="name-title">제 희</h1>
         <div class="invitation-text">
@@ -162,14 +158,14 @@
         </div>
     </section>
 
-    <!-- 세 번째 페이지 -->
+    <!-- 세 번째 페이지: 가로 영상 -->
     <section id="page3">
-        <h2 class="video-title">성장 기록 영상</h2>
+        <h2 class="video-title">제희의 성장 기록 영상</h2>
         <div class="video-wrapper">
             <div class="video-container">
-                <!-- 제희의 유튜브 영상 ID가 반영되었습니다 -->
+                <!-- 가로 영상 최적화 및 ID 반영 -->
                 <iframe src="https://www.youtube.com/embed/2Pjg7h13z2U?rel=0" 
-                        title="제희의 첫 돌 영상" 
+                        title="제희 성장 영상" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                 </iframe>
