@@ -9,47 +9,53 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Gowun Batang', serif; color: #333; background-color: #fdfaf7; line-height: 1.8; word-break: keep-all; }
 
-        section { width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 50px 20px; text-align: center; }
+        section { width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 24px; text-align: center; }
 
-        /* 1페이지: 메인 */
+        /* 1페이지: 메인 (날짜 제거) */
         #page1 { background-color: #fff; }
-        .main-title { font-size: 1.4rem; margin-bottom: 40px; color: #8d7b68; font-weight: 700; }
+        .main-title { font-size: 1.45rem; margin-bottom: 40px; color: #8d7b68; font-weight: 700; }
         .baby-photo-container { width: 85%; max-width: 300px; height: 400px; border-radius: 150px 150px 20px 20px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         .baby-photo-container img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* 2페이지: 인사말 */
+        /* 2페이지: 인사말 (아치형 문구 보정 및 간격 추가) */
         #page2 { background-color: #fdfaf7; }
-        .curved-text-container { width: 280px; height: 100px; margin-bottom: -20px; }
-        .curved-text-container text { font-family: 'Dancing Script', cursive; font-size: 24px; fill: #a6937c; }
-        .name-title { font-size: 2.8rem; letter-spacing: 15px; margin-bottom: 30px; color: #5d564e; padding-left: 15px; }
+        .curved-text-container { 
+            width: 300px; 
+            height: 110px; 
+            margin-bottom: 30px; /* 이름 타이틀과의 간격 (약 2줄 분량) */
+        }
+        .curved-text-container svg { width: 100%; height: 100%; overflow: visible; }
+        .curved-text-container text { font-family: 'Dancing Script', cursive; font-size: 26px; fill: #a6937c; }
+        
+        .name-title { font-size: 2.8rem; letter-spacing: 15px; margin-bottom: 35px; color: #5d564e; padding-left: 15px; }
         .invitation-text { font-size: 0.95rem; color: #555; line-height: 2.2; }
-        .parents-name { margin-top: 30px; font-weight: 700; color: #444; }
+        .parents-name { margin-top: 35px; font-weight: 700; color: #444; }
 
-        /* 3페이지: 사진첩 (4x4 바둑판) */
+        /* 3페이지: 사진첩 (image1~16 적용) */
         #page3 { background-color: #fff; }
-        .gallery-title { font-size: 1.3rem; margin-bottom: 30px; color: #8d7b68; font-weight: 700; }
+        .gallery-title { font-size: 1.3rem; margin-bottom: 35px; color: #8d7b68; font-weight: 700; }
         .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%; max-width: 360px; }
-        .gallery-item { width: 100%; aspect-ratio: 1 / 1; background: #eee; overflow: hidden; border-radius: 4px; cursor: pointer; }
+        .gallery-item { width: 100%; aspect-ratio: 1 / 1; background: #f0f0f0; overflow: hidden; border-radius: 4px; cursor: pointer; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
         /* 4페이지: 영상 */
         #page4 { background-color: #fdfaf7; }
         .video-wrapper { width: 100%; max-width: 550px; }
-        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; background: #000; border-radius: 12px; overflow: hidden; }
+        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; background: #000; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
         /* 사진 팝업 모달 */
-        .modal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
-        .modal-content { position: relative; width: 90%; max-width: 500px; display: flex; align-items: center; justify-content: center; }
-        .modal-content img { width: 100%; border-radius: 8px; }
-        .close-btn { position: absolute; top: -50px; right: 0; color: white; font-size: 35px; cursor: pointer; padding: 10px; }
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; background: none; border: none; padding: 20px; }
+        .modal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; }
+        .modal-content { position: relative; width: 95%; max-width: 500px; }
+        .modal-content img { width: 100%; border-radius: 4px; }
+        .close-btn { position: absolute; top: -50px; right: 0; color: white; font-size: 40px; cursor: pointer; }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.7); font-size: 40px; cursor: pointer; background: none; border: none; padding: 15px; }
         .prev-btn { left: -20px; }
         .next-btn { right: -20px; }
 
-        .footer { margin-top: 40px; font-size: 0.8rem; color: #aaa; }
+        .footer { margin-top: 50px; font-size: 0.8rem; color: #aaa; letter-spacing: 1px; }
         .fade-in { animation: fadeIn 2s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -60,16 +66,22 @@
             제희의 첫 번째 생일을<br>축하해주세요!
         </div>
         <div class="baby-photo-container fade-in">
-            <img src="images/IMG_9710.JPG" alt="메인 사진">
+            <!-- 메인 사진 -->
+            <img src="images/IMG_9710.JPG" alt="메인 이미지">
         </div>
     </section>
 
     <!-- 2페이지 -->
     <section id="page2">
         <div class="curved-text-container">
-            <svg viewBox="0 0 300 100">
-                <path id="curvePath" d="M 30,90 A 120,90 0 0,1 270,90" fill="transparent" />
-                <text><textPath xlink:href="#curvePath" startOffset="50%" text-anchor="middle">Happy 1st birthday</textPath></text>
+            <svg viewBox="0 0 320 110">
+                <!-- 아치 경로 수정 (잘림 방지) -->
+                <path id="curvePath" d="M 30,100 A 130,90 0 0,1 290,100" fill="transparent" />
+                <text>
+                    <textPath xlink:href="#curvePath" startOffset="50%" text-anchor="middle">
+                        Happy 1st birthday
+                    </textPath>
+                </text>
             </svg>
         </div>
         <h1 class="name-title">제 희</h1>
@@ -94,13 +106,7 @@
     <section id="page3">
         <h2 class="gallery-title">제희의 추억</h2>
         <div class="gallery-grid" id="galleryGrid">
-            <!-- 16개의 이미지 칸. 실제 사진 경로로 수정하세요 (예: photo1.jpg ~ photo16.jpg) -->
-            <!-- 현재는 테스트를 위해 같은 이미지를 넣었습니다 -->
-            <script>
-                for(let i=1; i<=16; i++) {
-                    document.write(`<div class="gallery-item" onclick="openModal(${i-1})"><img src="images/image${i}.JPG"></div>`);
-                }
-            </script>
+            <!-- 자바스크립트로 이미지 1~16번까지 생성 -->
         </div>
     </section>
 
@@ -126,15 +132,29 @@
     </div>
 
     <script>
-        // 사진 경로 배열 (실제 사진 파일명들로 채워주세요)
-        const images = Array(16).fill("images/IMG_9710.JPG"); 
+        // 1. 이미지 경로 설정 (image1.jpg ~ image16.jpg)
+        const images = [];
+        for (let i = 1; i <= 16; i++) {
+            images.push(`images/image${i}.jpg`);
+        }
+
+        // 2. 갤러리 그리드 생성
+        const galleryGrid = document.getElementById('galleryGrid');
+        images.forEach((src, index) => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.onclick = () => openModal(index);
+            item.innerHTML = `<img src="${src}" alt="제희 사진 ${index + 1}">`;
+            galleryGrid.appendChild(item);
+        });
+
         let currentIndex = 0;
 
         function openModal(index) {
             currentIndex = index;
             document.getElementById('photoModal').style.display = 'flex';
             document.getElementById('modalImg').src = images[currentIndex];
-            document.body.style.overflow = 'hidden'; // 스크롤 방지
+            document.body.style.overflow = 'hidden'; // 배경 스크롤 금지
         }
 
         function closeModal() {
@@ -149,17 +169,21 @@
             document.getElementById('modalImg').src = images[currentIndex];
         }
 
-        // 스와이프 기능 (모바일용)
+        // 모바일 스와이프 기능
         let touchstartX = 0;
         let touchendX = 0;
-
         const modalImg = document.getElementById('modalImg');
-        modalImg.addEventListener('touchstart', e => { touchstartX = e.changedTouches[0].screenX; });
+
+        modalImg.addEventListener('touchstart', e => { touchstartX = e.changedTouches[0].screenX; }, false);
         modalImg.addEventListener('touchend', e => {
             touchendX = e.changedTouches[0].screenX;
-            if (touchstartX - touchendX > 50) changeImage(1); // 왼쪽으로 밀면 다음
-            if (touchendX - touchstartX > 50) changeImage(-1); // 오른쪽으로 밀면 이전
-        });
+            handleGesture();
+        }, false);
+
+        function handleGesture() {
+            if (touchstartX - touchendX > 50) changeImage(1); // 왼쪽으로 밀기 -> 다음
+            if (touchendX - touchstartX > 50) changeImage(-1); // 오른쪽으로 밀기 -> 이전
+        }
     </script>
 </body>
 </html>
