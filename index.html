@@ -1,30 +1,20 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <head>
-    <!-- 기존 코드들 (charset, viewport 등) -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제희의 첫 번째 생일 초대장</title>
 
-    <!-- ✅ 카카오톡/메신저 공유용 설정 (Open Graph) -->
+    <!-- ✅ 카카오톡/메신저 공유용 설정 (Vercel 주소로 변경 필요) -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="제희의 첫 번째 생일 초대장">
-    <meta property="og:description" content="2026년 4월 17일, 제희의 생일을 함께 축하해 주세요!">
-    
-    <!-- ⚠️ 중요: 아래 URL은 실제 본인의 Vercel 주소로 바꿔야 사진이 뜹니다 -->
-    <meta property="og:image" content="https://1st-homepage-two-omega.vercel.app/images/image16.JPG">
-    
-    <meta property="og:url" content="https://1st-homepage-two-omega.vercel.app">
+    <meta property="og:description" content="2026년 4월 17일, 제희의 생일을 축하해 주세요!">
+    <meta property="og:image" content="https://your-project-name.vercel.app/images/image16.JPG">
+    <meta property="og:url" content="https://your-project-name.vercel.app">
 
-    <!-- 트위터/기타 메신저용 추가 -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://1st-homepage-two-omega.vercel.app/images/image16.JPG">
-    
-    <title>제희의 첫 번째 생일 초대장</title>
-    <!-- 이하 생략 (폰트, 스타일 등) -->
-            
-    <title>제희의 첫 번째 생일 초대장</title>
+    <!-- 구글 폰트 -->
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Gowun Batang', serif; color: #333; background-color: #fdfaf7; line-height: 1.8; word-break: keep-all; }
@@ -41,25 +31,18 @@
         #page2 { background-color: #fdfaf7; }
         .curved-text-container { 
             width: 300px; 
-            height: 40px; /* 높이 추가 축소 */
-            margin-bottom: -12px; /* 음수 마진으로 이름 타이틀을 위로 끌어올림 */
+            height: 40px; 
+            margin-bottom: -12px; /* 이름과 밀착 */
             z-index: 1;
         }
         .curved-text-container svg { width: 100%; height: 100%; overflow: visible; }
         .curved-text-container text { font-family: 'Dancing Script', cursive; font-size: 26px; fill: #a6937c; }
         
-        .name-title { 
-            font-size: 2.8rem; 
-            letter-spacing: 15px; 
-            margin-bottom: 25px; 
-            color: #5d564e; 
-            padding-left: 15px; 
-            line-height: 1.0; /* 글자 높이 여백 제거 */
-        }
+        .name-title { font-size: 2.8rem; letter-spacing: 15px; margin-bottom: 25px; color: #5d564e; padding-left: 15px; line-height: 1.0; }
         .invitation-text { font-size: 0.95rem; color: #555; line-height: 2.2; }
         .parents-name { margin-top: 30px; font-weight: 700; color: #444; }
 
-        /* 3페이지: 사진첩 */
+        /* 3페이지: 사진첩 (지연 로딩 적용) */
         #page3 { background-color: #fff; }
         .gallery-title { font-size: 1.3rem; margin-bottom: 30px; color: #8d7b68; font-weight: 700; }
         .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%; max-width: 360px; }
@@ -88,7 +71,7 @@
 </head>
 <body>
 
-    <!-- 1페이지 -->
+    <!-- 1페이지: 메인 -->
     <section id="page1">
         <div class="main-title fade-in">
             2026년 4월 17일<br>
@@ -96,15 +79,15 @@
             축하해주세요!
         </div>
         <div class="baby-photo-container fade-in">
+            <!-- 메인 사진 변경: image16.JPG -->
             <img src="images/image16.JPG" alt="메인 이미지">
         </div>
     </section>
 
-    <!-- 2페이지 -->
+    <!-- 2페이지: 인사말 -->
     <section id="page2">
         <div class="curved-text-container">
             <svg viewBox="0 0 320 40">
-                <!-- 아치형 경로를 박스 하단 끝에 배치 -->
                 <path id="curvePath" d="M 40,38 A 120,40 0 0,1 280,38" fill="transparent" />
                 <text>
                     <textPath xlink:href="#curvePath" startOffset="50%" text-anchor="middle">
@@ -159,7 +142,7 @@
     </div>
 
     <script>
-        // 이미지 경로 (.JPG 대문자 반영)
+        // 이미지 경로 (.JPG 대문자)
         const images = [];
         for (let i = 1; i <= 16; i++) {
             images.push(`images/image${i}.JPG`);
@@ -170,15 +153,18 @@
             const item = document.createElement('div');
             item.className = 'gallery-item';
             item.onclick = () => openModal(index);
-            item.innerHTML = `<img src="${src}" onerror="this.style.display='none'">`;
+            // ✅ loading="lazy" 추가하여 썸네일 로딩 속도 최적화
+            item.innerHTML = `<img src="${src}" loading="lazy" onerror="this.style.display='none'">`;
             galleryGrid.appendChild(item);
         });
 
         let currentIndex = 0;
         function openModal(index) {
             currentIndex = index;
-            document.getElementById('photoModal').style.display = 'flex';
-            document.getElementById('modalImg').src = images[currentIndex];
+            const modal = document.getElementById('photoModal');
+            const modalImg = document.getElementById('modalImg');
+            modal.style.display = 'flex';
+            modalImg.src = images[currentIndex];
             document.body.style.overflow = 'hidden';
         }
         function closeModal() {
