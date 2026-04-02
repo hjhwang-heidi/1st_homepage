@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>제희의 첫 번째 생일 </title>
+    <title>제희의 첫 번째 생일 초대장</title>
     <!-- 구글 폰트 적용 (나눔명조, 고운바탕) -->
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -12,7 +12,8 @@
             font-family: 'Gowun Batang', serif; 
             color: #333; 
             background-color: #fdfaf7; 
-            line-height: 1.6;
+            line-height: 1.8;
+            overflow-x: hidden;
         }
 
         /* 공통 섹션 스타일 */
@@ -23,9 +24,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 40px 20px;
+            padding: 50px 24px;
             text-align: center;
-            border-bottom: 1px solid #eee;
         }
 
         /* 첫 번째 페이지: 메인 */
@@ -33,19 +33,21 @@
             background-color: #fff;
         }
         .main-title {
-            font-size: 1.4rem;
-            margin-bottom: 30px;
+            font-size: 1.5rem;
+            margin-bottom: 40px;
             color: #8d7b68;
             font-weight: 700;
+            line-height: 1.5;
         }
         .baby-photo {
-            width: 80%;
-            max-width: 300px;
-            height: 400px;
-            background: #eee url('https://via.placeholder.com/300x400') no-repeat center; /* 실제 사진 경로로 수정 */
+            width: 85%;
+            max-width: 320px;
+            height: 420px;
+            /* 실제 사진 파일이 있다면 아래 url에 파일명을 넣으세요 */
+            background: #f0f0f0 url('https://via.placeholder.com/400x530') no-repeat center;
             background-size: cover;
-            border-radius: 150px 150px 0 0; /* 아치형 디자인 */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-radius: 160px 160px 20px 20px; /* 세련된 아치형 */
+            box-shadow: 0 15px 30px rgba(141, 123, 104, 0.15);
         }
 
         /* 두 번째 페이지: 안내글 */
@@ -53,40 +55,55 @@
             background-color: #fdfaf7;
         }
         .name-title {
-            font-size: 2.5rem;
-            letter-spacing: 10px;
-            margin-bottom: 40px;
+            font-size: 2.8rem;
+            letter-spacing: 15px;
+            margin-bottom: 45px;
             color: #5d564e;
-            border-bottom: 1px solid #d1c7bd;
-            padding-bottom: 10px;
+            position: relative;
+            padding-left: 15px; /* 글자 간격 때문에 치우쳐 보이는 것 방지 */
+        }
+        .name-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: #d1c7bd;
+            margin: 15px auto 0;
         }
         .invitation-text {
-            font-size: 1rem;
-            color: #666;
+            font-size: 1.05rem;
+            color: #555;
             word-break: keep-all;
         }
         .invitation-text p {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
-        /* 세 번째 페이지: 영상 */
+        /* 세 번째 페이지: 가로 영상 최적화 */
         #page3 {
             background-color: #fff;
         }
         .video-title {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+            font-size: 1.3rem;
+            margin-bottom: 35px;
             color: #8d7b68;
+            font-weight: 700;
+        }
+        /* 가로 영상(16:9)을 위한 컨테이너 */
+        .video-wrapper {
+            width: 100%;
+            max-width: 600px; /* 모바일 가로모드나 태블릿 대응 */
+            padding: 0 5px;
         }
         .video-container {
-            width: 100%;
-            max-width: 500px;
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 비율 */
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 비율 유지 공식 */
             height: 0;
             overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            background-color: #000;
         }
         .video-container iframe {
             position: absolute;
@@ -94,17 +111,19 @@
             left: 0;
             width: 100%;
             height: 100%;
+            border: 0;
         }
         
         .footer {
-            margin-top: 50px;
-            font-size: 0.8rem;
+            margin-top: 60px;
+            font-size: 0.85rem;
             color: #aaa;
+            letter-spacing: 1px;
         }
 
-        /* 애니메이션 효과 */
+        /* 애니메이션 */
         .fade-in {
-            animation: fadeIn 2s;
+            animation: fadeIn 2s ease-out;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -122,7 +141,7 @@
             축하해주세요!
         </div>
         <div class="baby-photo fade-in">
-            <!-- <img src="제희사진.jpg" style="width:100%; height:100%; object-fit:cover; border-radius: 150px 150px 0 0;"> -->
+            <!-- 사진을 넣으려면 <img> 태그를 사용하거나 위 CSS의 background url을 수정하세요 -->
         </div>
     </section>
 
@@ -130,31 +149,35 @@
     <section id="page2">
         <h1 class="name-title">제 희</h1>
         <div class="invitation-text">
-            <p>따스한 봄볕 아래,</p>
+            <p>꽃향기 가득한 따스한 봄날,</p>
             <p>우리 제희가 세상에 온 지</p>
             <p>어느덧 일 년이 되었습니다.</p>
-            <p>초보 엄마 아빠 곁에서</p>
-            <p>밝고 건강하게 자라준 제희를 위해</p>
-            <p>작은 잔치를 마련했습니다.</p>
-            <p>귀한 걸음 하시어</p>
-            <p>제희의 첫 번째 걸음마를</p>
-            <p>응원해주시고 축복해주세요.</p>
-            <p>감사합니다.</p>
+            <p>함께해주신 소중한 분들 덕분에</p>
+            <p>제희가 건강하게 자랄 수 있었습니다.</p>
+            <p>초보 엄마 아빠의 서툰 걸음에도</p>
+            <p>늘 곁에서 응원해주신 고마운 분들을 모시고</p>
+            <p>작고 소중한 잔치를 열고자 합니다.</p>
+            <p>제희의 첫 번째 생일 파티에 오셔서</p>
+            <p>밝은 앞날을 함께 축복해 주세요.</p>
         </div>
     </section>
 
     <!-- 세 번째 페이지 -->
     <section id="page3">
-        <h2 class="video-title">제희의 성장 영상</h2>
-        <div class="video-container">
-            <!-- 유튜브 영상 ID를 입력하세요 (예: dQw4w9WgXcQ) -->
-            <iframe src="https://www.youtube.com/embed/2Pjg7h13z2U" 
-                    title="YouTube video player" frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen></iframe>
+        <h2 class="video-title">성장 기록 영상</h2>
+        <div class="video-wrapper">
+            <div class="video-container">
+                <!-- 제희의 유튜브 영상 ID가 반영되었습니다 -->
+                <iframe src="https://www.youtube.com/embed/2Pjg7h13z2U?rel=0" 
+                        title="제희의 첫 돌 영상" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
         </div>
         <div class="footer">
-            2024년 4월 28일 | 제희네 가족 드림
+            2024. 04. 28 <br>
+            아빠 엄마 드림
         </div>
     </section>
 
