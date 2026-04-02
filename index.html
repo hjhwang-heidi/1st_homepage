@@ -28,13 +28,14 @@
             text-align: center;
         }
 
-        /* 첫 번째 페이지 */
+        /* 첫 번째 페이지: 메인 */
         #page1 { background-color: #fff; }
         .main-title {
             font-size: 1.45rem;
             margin-bottom: 40px;
             color: #8d7b68;
             font-weight: 700;
+            line-height: 1.6;
         }
         .baby-photo-container {
             width: 85%;
@@ -48,24 +49,25 @@
             width: 100%; height: 100%; object-fit: cover;
         }
 
-        /* 두 번째 페이지 */
+        /* 두 번째 페이지: 안내글 */
         #page2 { background-color: #fdfaf7; }
         
-        /* 아치형 텍스트 스타일 */
+        /* 아치형 문구 수정 (잘림 방지) */
         .curved-text-container {
-            width: 200px;
-            height: 100px;
-            margin-bottom: -20px; /* 이름 타이틀과의 간격 조절 */
+            width: 280px; /* 너비 확장 */
+            height: 120px;
+            margin-bottom: -30px;
         }
         .curved-text-container svg {
             width: 100%;
             height: 100%;
+            overflow: visible; /* 글자가 영역 밖으로 나가도 보이게 설정 */
         }
         .curved-text-container text {
             font-family: 'Dancing Script', cursive;
-            font-size: 22px;
+            font-size: 24px;
             fill: #a6937c;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
         .name-title {
@@ -80,20 +82,13 @@
             color: #555;
             line-height: 2.2;
         }
-        .date-highlight {
-            font-weight: 700;
-            color: #8d7b68;
-            margin-bottom: 15px;
-            display: block;
-            font-size: 1.1rem;
-        }
         .parents-name {
-            margin-top: 30px;
+            margin-top: 35px;
             font-weight: 700;
             color: #444;
         }
 
-        /* 세 번째 페이지 */
+        /* 세 번째 페이지: 가로 영상 */
         #page3 { background-color: #fff; }
         .video-title {
             font-size: 1.25rem;
@@ -124,7 +119,7 @@
             color: #aaa;
         }
 
-        /* 애니메이션 */
+        /* 페이드인 애니메이션 */
         .fade-in { animation: fadeIn 2.5s ease-out; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -134,24 +129,25 @@
 </head>
 <body>
 
-    <!-- 첫 번째 페이지: 메인 -->
+    <!-- 첫 번째 페이지 -->
     <section id="page1">
         <div class="main-title fade-in">
-            2025년 4월 17일<br>
+            4월 28일<br>
             제희의 첫 번째 생일을<br>
             축하해주세요!
         </div>
         <div class="baby-photo-container fade-in">
-            <img src="images/IMG_9710.JPG" alt="제희의 첫 돌 사진">
+            <img src="images/IMG_9710.JPG" alt="제희 사진">
         </div>
     </section>
 
-    <!-- 두 번째 페이지: 안내글 -->
+    <!-- 두 번째 페이지 -->
     <section id="page2">
-        <!-- 아치형 부제목 -->
+        <!-- 수정된 아치형 부제목 -->
         <div class="curved-text-container">
-            <svg viewBox="0 0 200 100">
-                <path id="curvePath" d="M 20,80 A 80,80 0 0,1 180,80" fill="transparent" />
+            <svg viewBox="0 0 300 120">
+                <!-- 아치 경로 조정 -->
+                <path id="curvePath" d="M 30,100 A 120,100 0 0,1 270,100" fill="transparent" />
                 <text>
                     <textPath xlink:href="#curvePath" startOffset="50%" text-anchor="middle">
                         Happy 1st birthday
@@ -163,7 +159,7 @@
         <h1 class="name-title">제 희</h1>
         
         <div class="invitation-text">
-            <span class="date-highlight">2025년 4월 17일</span>
+            <p>2025년 4월 17일</p>
             <p>저희 곁에 찾아온</p>
             <p>사랑스러운 제희가 어느새 사계절을 지나</p>
             <p>첫 번째 생일을 맞이했습니다.</p>
@@ -182,7 +178,7 @@
         </div>
     </section>
 
-    <!-- 세 번째 페이지: 가로 영상 -->
+    <!-- 세 번째 페이지 -->
     <section id="page3">
         <h2 class="video-title">제희의 성장 기록 영상</h2>
         <div class="video-wrapper">
@@ -195,7 +191,7 @@
             </div>
         </div>
         <div class="footer">
-            Designed for Jehee's 1st Birthday
+            Happy Jehee's 1st Birthday
         </div>
     </section>
 
