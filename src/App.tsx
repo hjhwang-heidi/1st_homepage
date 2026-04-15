@@ -9,14 +9,14 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const IMAGES = Array.from({ length: 16 }, (_, i) => `images/image${i + 1}.JPG`);
 
-// Placeholder for paint stroke images if they don't exist
+// Paint stroke images provided by the user
 const PAINT_STROKES = {
-  white: "https://picsum.photos/seed/white-paint/200/100",
-  green: "https://picsum.photos/seed/green-paint/200/100",
-  orange: "https://picsum.photos/seed/orange-paint/200/100",
-  blue: "https://picsum.photos/seed/blue-paint/200/100",
-  brown: "https://picsum.photos/seed/brown-paint/200/100",
-  purple: "https://picsum.photos/seed/purple-paint/200/100",
+  white: "images/yellow.png",
+  green: "images/green.png",
+  orange: "images/orange.png",
+  blue: "images/blue.png",
+  brown: "images/brown.png",
+  purple: "images/purple.png",
 };
 
 export default function App() {
