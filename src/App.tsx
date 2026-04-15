@@ -3,9 +3,19 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Send, User, MessageSquare } from 'lucide-react';
+import { db } from './firebase';
+import { 
+  collection, 
+  addDoc, 
+  query, 
+  orderBy, 
+  onSnapshot, 
+  serverTimestamp,
+  Timestamp 
+} from 'firebase/firestore';
 
 const IMAGES = Array.from({ length: 16 }, (_, i) => `images/image${i + 1}.JPG`);
 
@@ -19,9 +29,58 @@ const PAINT_STROKES = {
   purple: "images/purple.png",
 };
 
+interface GuestbookEntry {
+  id: string;
+  name: string;
+  content: string;
+  createdAt: any;
+}
+
 export default function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  
+  // Guestbook state
+  const [entries, setEntries] = useState<GuestbookEntry[]>([]);
+  const [name, setName] = useState('');
+  const [content, setContent] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const q = query(collection(db, 'guestbook'), orderBy('createdAt', 'desc'));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const newEntries = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      })) as GuestbookEntry[];
+      setEntries(newEntries);
+    }, (error) => {
+      console.error("Guestbook fetch error:", error);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const handleGuestbookSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !content.trim() || isSubmitting) return;
+
+    setIsSubmitting(true);
+    try {
+      await addDoc(collection(db, 'guestbook'), {
+        name: name.trim(),
+        content: content.trim(),
+        createdAt: new Date().toISOString(), // Using ISO string for simple rules validation
+      });
+      setName('');
+      setContent('');
+    } catch (error) {
+      console.error("Error adding guestbook entry:", error);
+      alert("방명록 작성 중 오류가 발생했습니다.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const openModal = (index: number) => {
     setCurrentIndex(index);
@@ -325,6 +384,109 @@ export default function App() {
               </div>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* 8페이지: 돌잡이 이벤트 및 방명록 (UPDATED) */}
+      <section id="page8" className="w-full min-h-screen flex flex-col items-center p-5 py-20 text-center bg-[#fdfaf7] relative overflow-hidden">
+        {/* Decorative paint strokes */}
+        <div className="absolute top-[-20px] right-[-20px] w-48 h-48 opacity-30 rotate-[20deg] pointer-events-none">
+          <img src="images/orange.png" className="w-full h-full object-contain" alt="" referrerPolicy="no-referrer" />
+        </div>
+        <div className="absolute top-[10%] left-[-30px] w-40 h-40 opacity-30 rotate-[-15deg] pointer-events-none">
+          <img src="images/blue.png" className="w-full h-full object-contain" alt="" referrerPolicy="no-referrer" />
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          className="bg-black text-white px-6 py-1.5 rounded-full text-sm font-bold mb-10"
+        >
+          돌잡이 이벤트 참여
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="space-y-2 mb-12"
+        >
+          <h2 className="text-[2.2rem] font-black tracking-tight leading-tight">
+            <span className="text-[#f27d26]">제희</span>가 선택할
+          </h2>
+          <h2 className="text-[2.2rem] font-black tracking-tight leading-tight">
+            <span className="text-[#2d5a27]">컬러</span>를 맞혀주세요!
+          </h2>
+          <p className="text-[1rem] font-bold text-gray-700 pt-2">
+            맞히시는 분께 소정의 상품을 드립니다.
+          </p>
+        </motion.div>
+
+        {/* Guestbook Form */}
+        <div className="w-full max-w-[400px] bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-12">
+          <h3 className="text-[1.1rem] font-black mb-6 text-left border-l-4 border-black pl-3">
+            방명록 남기기
+          </h3>
+          <form onSubmit={handleGuestbookSubmit} className="space-y-4">
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+              <input 
+                type="text" 
+                placeholder="이름" 
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-[#f27d26] outline-none font-bold text-sm"
+                required
+              />
+            </div>
+            <div className="relative">
+              <MessageSquare className="absolute left-3 top-4 text-gray-400" size={18} />
+              <textarea 
+                placeholder="제희에게 축하 메시지를 남겨주세요! (예: 제희야 생일 축하해! 돌잡이는 오렌지!)" 
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-[#f27d26] outline-none font-bold text-sm min-h-[100px] resize-none"
+                required
+              />
+            </div>
+            <button 
+              type="submit" 
+              disabled={isSubmitting}
+              className="w-full bg-black text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-gray-800 transition-colors disabled:bg-gray-400"
+            >
+              {isSubmitting ? "전송 중..." : <><Send size={18} /> 메시지 남기기</>}
+            </button>
+          </form>
+        </div>
+
+        {/* Guestbook List */}
+        <div className="w-full max-w-[400px] text-left">
+          <h3 className="text-[1.1rem] font-black mb-6 border-l-4 border-[#f27d26] pl-3">
+            방명록 리스트 ({entries.length})
+          </h3>
+          <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+            {entries.length === 0 ? (
+              <p className="text-center py-10 text-gray-400 font-bold">첫 번째 방명록을 남겨주세요!</p>
+            ) : (
+              entries.map((entry) => (
+                <motion.div 
+                  key={entry.id}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm"
+                >
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-black text-[#f27d26]">{entry.name}</span>
+                    <span className="text-[10px] text-gray-400">
+                      {entry.createdAt ? new Date(entry.createdAt).toLocaleDateString() : ''}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-700 font-bold leading-relaxed">
+                    {entry.content}
+                  </p>
+                </motion.div>
+              ))
+            )}
+          </div>
         </div>
       </section>
 
