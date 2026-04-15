@@ -121,7 +121,7 @@ export default function App() {
           className="w-[85%] max-w-[300px] h-[400px] rounded-t-[150px] rounded-b-[20px] overflow-hidden shadow-2xl"
         >
           <img 
-            src="images/image16.JPG" 
+            src="images/invitation_main.png" 
             alt="메인" 
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
