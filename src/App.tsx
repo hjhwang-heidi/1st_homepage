@@ -213,11 +213,11 @@ export default function App() {
       {/* 6페이지: 색깔 돌잡이 인트로 (NEW) */}
       <section id="page6" className="w-full min-h-screen flex flex-col items-center justify-center p-5 text-center bg-[#fdfaf7] relative overflow-hidden">
         {/* Decorative paint strokes */}
-        <div className="absolute top-[-20px] left-[-20px] w-40 h-40 opacity-20 rotate-[-15deg]">
-          <img src={PAINT_STROKES.orange} className="w-full h-full object-contain" alt="" referrerPolicy="no-referrer" />
+        <div className="absolute top-[-10px] left-[-10px] w-48 h-48 rotate-[-10deg]">
+          <img src="images/cover_orange.png" className="w-full h-full object-contain" alt="" referrerPolicy="no-referrer" />
         </div>
-        <div className="absolute bottom-[-20px] right-[-20px] w-40 h-40 opacity-20 rotate-[15deg]">
-          <img src={PAINT_STROKES.blue} className="w-full h-full object-contain" alt="" referrerPolicy="no-referrer" />
+        <div className="absolute bottom-[-10px] right-[-10px] w-48 h-48 rotate-[10deg]">
+          <img src="images/cover_gray.png" className="w-full h-full object-contain" alt="" referrerPolicy="no-referrer" />
         </div>
 
         <motion.div 
@@ -313,9 +313,6 @@ export default function App() {
             >
               <div className="w-16 h-16 flex-shrink-0 relative">
                 <img src={color.stroke} className="w-full h-full object-contain" alt="" referrerPolicy="no-referrer" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-4 h-4 rounded-full shadow-sm" style={{ backgroundColor: color.color }}></div>
-                </div>
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
