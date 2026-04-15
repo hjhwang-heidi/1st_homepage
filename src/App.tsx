@@ -490,6 +490,65 @@ export default function App() {
         </div>
       </section>
 
+      {/* 9페이지: 돌잔치 안내 (NEW) */}
+      <section id="page9" className="w-full min-h-screen flex flex-col items-center justify-center p-5 text-center bg-white relative overflow-hidden">
+        {/* Decorative paint strokes */}
+        <div className="absolute top-[-20px] left-[-20px] w-48 h-48 opacity-20 rotate-[-15deg]">
+          <img src="images/green.png" className="w-full h-full object-contain" alt="" referrerPolicy="no-referrer" />
+        </div>
+        <div className="absolute bottom-[-20px] right-[-20px] w-48 h-48 opacity-20 rotate-[15deg]">
+          <img src="images/purple.png" className="w-full h-full object-contain" alt="" referrerPolicy="no-referrer" />
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          className="bg-black text-white px-6 py-1.5 rounded-full text-sm font-bold mb-10"
+        >
+          제희 돌잔치 안내
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="space-y-6 mb-12"
+        >
+          <div className="space-y-2">
+            <p className="text-[1.1rem] text-gray-500 font-bold">Online Google Meet</p>
+            <h2 className="text-[2.5rem] font-black text-[#1a1a1a] leading-tight">
+              제희의 첫 돌잔치에<br />초대합니다
+            </h2>
+          </div>
+
+          <div className="bg-[#fdfaf7] p-8 rounded-3xl border border-gray-100 shadow-sm space-y-4 max-w-[340px] mx-auto">
+            <div className="flex flex-col gap-1">
+              <span className="text-[0.8rem] text-[#f27d26] font-bold uppercase tracking-wider">Date</span>
+              <p className="text-[1.2rem] font-black text-gray-800">2026년 4월 17일 (금요일)</p>
+            </div>
+            <div className="w-full h-[1px] bg-gray-200"></div>
+            <div className="flex flex-col gap-1">
+              <span className="text-[0.8rem] text-[#f27d26] font-bold uppercase tracking-wider">Time</span>
+              <p className="text-[1.2rem] font-black text-gray-800">11:00 ~ 11:30 (KST)</p>
+            </div>
+          </div>
+
+          <p className="text-[0.9rem] text-gray-500 font-bold">
+            *돌잔치 참여 전 방명록을 남겨주세요! :)
+          </p>
+        </motion.div>
+
+        <motion.a
+          href="https://meet.google.com/zty-ucoe-ext"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-[#f27d26] text-white px-10 py-5 rounded-full font-black text-[1.2rem] shadow-lg shadow-orange-200 flex items-center gap-3"
+        >
+          돌잔치 참여하기
+        </motion.a>
+      </section>
+
       <footer className="w-full py-10 text-center text-[0.8rem] text-[#aaa] bg-white">
         Happy Jehee's 1st Birthday
       </footer>
