@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isValidGuestbookEntry(data) {
+      return data.name is string && data.name.size() > 0 && data.name.size() <= 50 &&
+             data.content is string && data.content.size() > 0 && data.content.size() <= 500 &&
+             data.createdAt is string;
+    }
+
+    match /guestbook/{entryId} {
+      // Allow anyone to read guestbook entries
+      allow read: if true;
+      
+      // Allow anyone to create an entry (even unauthenticated for a public guestbook)
+      // But we validate the data strictly
+      allow create: if isValidGuestbookEntry(request.resource.data);
+      
+      // No updates or deletes allowed for guests
+      allow update, delete: if false;
+    }
+  }
+}
