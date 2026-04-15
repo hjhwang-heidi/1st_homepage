@@ -21,7 +21,7 @@ const IMAGES = Array.from({ length: 16 }, (_, i) => `images/image${i + 1}.JPG`);
 
 // Paint stroke images provided by the user
 const PAINT_STROKES = {
-  white: "images/yellow.png",
+  white: "images/white.png",
   green: "images/green.png",
   orange: "images/orange.png",
   blue: "images/blue.png",
@@ -279,13 +279,13 @@ export default function App() {
           <img src="images/cover_gray.png" className="w-full h-full object-contain" alt="" referrerPolicy="no-referrer" />
         </div>
 
-        <motion.div 
+        <motion.h2 
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          className="bg-black text-white px-4 py-1 rounded-full text-sm font-bold mb-6"
+          className="text-[1.3rem] mb-[30px] text-[#8d7b68] font-bold"
         >
           제희's 초이스
-        </motion.div>
+        </motion.h2>
         
         <motion.h2 
           initial={{ opacity: 0, y: 30 }}
@@ -316,7 +316,7 @@ export default function App() {
 
       {/* 7페이지: 색깔별 의미 (NEW) */}
       <section id="page7" className="w-full min-h-screen flex flex-col items-center justify-center p-5 bg-white">
-        <h2 className="text-[1.5rem] font-bold mb-10 text-center">준비된 색상 (총 6색)</h2>
+        <h2 className="text-[1.3rem] mb-[30px] text-[#8d7b68] font-bold text-center">준비된 색상</h2>
         
         <div className="w-full max-w-[400px] space-y-8">
           {[
@@ -397,13 +397,13 @@ export default function App() {
           <img src="images/blue.png" className="w-full h-full object-contain" alt="" referrerPolicy="no-referrer" />
         </div>
 
-        <motion.div 
+        <motion.h2 
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          className="bg-black text-white px-6 py-1.5 rounded-full text-sm font-bold mb-10"
+          className="text-[1.3rem] mb-[30px] text-[#8d7b68] font-bold"
         >
           돌잡이 이벤트 참여
-        </motion.div>
+        </motion.h2>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -500,13 +500,13 @@ export default function App() {
           <img src="images/purple.png" className="w-full h-full object-contain" alt="" referrerPolicy="no-referrer" />
         </div>
 
-        <motion.div 
+        <motion.h2 
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          className="bg-black text-white px-6 py-1.5 rounded-full text-sm font-bold mb-10"
+          className="text-[1.3rem] mb-[30px] text-[#8d7b68] font-bold"
         >
           제희 돌잔치 안내
-        </motion.div>
+        </motion.h2>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -528,7 +528,7 @@ export default function App() {
             <div className="w-full h-[1px] bg-gray-200"></div>
             <div className="flex flex-col gap-1">
               <span className="text-[0.8rem] text-[#f27d26] font-bold uppercase tracking-wider">Time</span>
-              <p className="text-[1.2rem] font-black text-gray-800">11:00 ~ 11:30 (KST)</p>
+              <p className="text-[1.2rem] font-black text-gray-800">18:00 ~ 18:30 (KST)</p>
             </div>
           </div>
 
