@@ -260,7 +260,7 @@ export default function App() {
         <div className="w-full max-w-[550px]">
           <div className="relative w-full pb-[56.25%] h-0 bg-black rounded-xl overflow-hidden">
             <iframe 
-              src="https://www.youtube.com/embed/2Pjg7h13z2U?rel=0" 
+              src="https://www.youtube.com/embed/ZHd_HT5lbXs?rel=0" 
               allowFullScreen 
               className="absolute top-0 left-0 w-full h-full border-0"
               title="성장 영상"
@@ -492,14 +492,6 @@ export default function App() {
 
       {/* 9페이지: 돌잔치 안내 (NEW) */}
       <section id="page9" className="w-full min-h-screen flex flex-col items-center justify-center p-5 text-center bg-white relative overflow-hidden">
-        {/* Decorative paint strokes */}
-        <div className="absolute top-[-20px] left-[-20px] w-48 h-48 opacity-20 rotate-[-15deg]">
-          <img src="images/green.png" className="w-full h-full object-contain" alt="" referrerPolicy="no-referrer" />
-        </div>
-        <div className="absolute bottom-[-20px] right-[-20px] w-48 h-48 opacity-20 rotate-[15deg]">
-          <img src="images/purple.png" className="w-full h-full object-contain" alt="" referrerPolicy="no-referrer" />
-        </div>
-
         <motion.h2 
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -533,7 +525,8 @@ export default function App() {
           </div>
 
           <p className="text-[0.9rem] text-gray-500 font-bold">
-            *돌잔치 참여 전 방명록을 남겨주세요! :)
+            *돌잔치 참여 전 방명록을 남겨주세요! :)<br />
+            오제희군의 돌잔치는 반지, 선물 및 현금을 일절 사양합니다.
           </p>
         </motion.div>
 
