@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Dancing+Script:wght@600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-gowun: "Gowun Batang", serif;
+  --font-nanum: "Nanum Myeongjo", serif;
+  --font-dancing: "Dancing Script", cursive;
+}
+
+@layer base {
+  body {
+    @apply font-gowun text-[#333] bg-[#fdfaf7] leading-relaxed;
+    word-break: keep-all;
+  }
+}
+
+@layer components {
+  .section-title {
+    @apply text-[1.3rem] mb-[30px] text-[#8d7b68] font-bold text-center;
+  }
+}
